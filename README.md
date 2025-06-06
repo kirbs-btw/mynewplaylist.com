@@ -8,3 +8,9 @@ Having a PostgreSQL + pgvector as a database
 
 Then having a frontend build up with 
 React there
+
+
+## setup 
+```bash
+docker compose up -d
+```

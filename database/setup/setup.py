@@ -25,6 +25,5 @@ def main():
         sql_command = f"INSERT INTO table_name (id, other_values, embedding) VALUES ({key}, {vector})"
         cur.execute(sql_command)
 
-
 if __name__ == '__main__':
     main()

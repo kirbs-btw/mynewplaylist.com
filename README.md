@@ -1,4 +1,6 @@
 # mynewplaylist.com
+This repo is deploying a recommendation model. onto a frontend with fastapi, postgres + vectorpg and react 
+
 
 The architecture will look like that: 
 taking the CBOW model vectors and transfering them into a vector database

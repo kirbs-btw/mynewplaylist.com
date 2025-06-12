@@ -7,23 +7,31 @@ def main():
     """
     inserting the vectors with the data to the pg
     """
-    model =  Word2Vec.load("model/b25-CBOW-256-5-150v2.model")
-    
-    conn = psycopg2.connect("dbname=yourdb user=youruser password=yourpass host=localhost")
+
+    conn = psycopg2.connect("dbname=vectordemo user=postgres password=secret host=localhost")
     register_vector(conn)
     cur = conn.cursor()
+    print("CONNECTED TO DATABASE")
+    
+    model =  Word2Vec.load("model/b25-CBOW-256-5-150v2.model")
+    print("MODEL LOADED")
 
     df = pd.read_csv("csv/songs.csv")
+    print("SONGS LOADED")
 
-    for key in model.wv:
-        vector = model.wv[key]
-        # take pair and put it into the vector store
-        # also get the mapping from the database
-        # insert all into postgres pg
+    max = len(model.wv)
+    count = 0
+    for idx, key in enumerate(model.wv.key_to_index):
+        vector = str(list(model.wv[key]))
+        row = df[df['track_id'] == key].iloc[0]
 
-        # need to decide on a database structure
-        sql_command = f"INSERT INTO table_name (id, other_values, embedding) VALUES ({key}, {vector})"
-        cur.execute(sql_command)
+        sql_command = "INSERT INTO b25.songs (track_id, track_name, artist_name, track_external_urls, embedding) VALUES (%s, %s, %s, %s, %s)"
+        cur.execute(sql_command, (row['track_id'], row['track_name'], row['artist_name'], row['track_external_urls'] , vector))
+        count += 1
+        print(f"loaded {count}/{max} - inserted id: {key}")
 
+        if idx % 100 == 0:
+            conn.commit()
+    conn.commit()
 if __name__ == '__main__':
     main()

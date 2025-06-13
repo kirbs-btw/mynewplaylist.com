@@ -1,37 +1,32 @@
 import pandas as pd 
 from gensim.models import Word2Vec
-import psycopg2
-from pgvector.psycopg2 import register_vector
+
+def format_vector(vec):
+    return "[" + ", ".join(f"{x:.6f}" for x in vec) + "]"
 
 def main():
     """
     inserting the vectors with the data to the pg
     """
 
-    conn = psycopg2.connect("dbname=vectordemo user=postgres password=secret host=localhost")
-    register_vector(conn)
-    cur = conn.cursor()
-    print("CONNECTED TO DATABASE")
-    
     model =  Word2Vec.load("model/b25-CBOW-256-5-150v2.model")
     print("MODEL LOADED")
 
     df = pd.read_csv("csv/songs.csv")
+    df = df[["track_id","track_name","track_external_urls","artist_name"]]
+
+    df['track_id'] = df['track_id'].astype(str)
     print("SONGS LOADED")
 
-    max = len(model.wv)
-    count = 0
-    for idx, key in enumerate(model.wv.key_to_index):
-        vector = str(list(model.wv[key]))
-        row = df[df['track_id'] == key].iloc[0]
+    valid_ids = set(model.wv.key_to_index)
+    filtered_df = df[df['track_id'].isin(valid_ids)].copy()
 
-        sql_command = "INSERT INTO b25.songs (track_id, track_name, artist_name, track_external_urls, embedding) VALUES (%s, %s, %s, %s, %s)"
-        cur.execute(sql_command, (row['track_id'], row['track_name'], row['artist_name'], row['track_external_urls'] , vector))
-        count += 1
-        print(f"loaded {count}/{max} - inserted id: {key}")
+    # Assign clean, comma-separated stringified vectors
+    filtered_df['embedding'] = filtered_df['track_id'].map(lambda tid: format_vector(model.wv[tid]))
 
-        if idx % 100 == 0:
-            conn.commit()
-    conn.commit()
+    print("EMBEDDINGS ADDED")
+
+    filtered_df.to_csv("combined_csv/songs_with_embeddings.csv", index=False, encoding="utf-8", errors="ignore")
+
 if __name__ == '__main__':
     main()

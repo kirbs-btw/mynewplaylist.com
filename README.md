@@ -13,14 +13,16 @@ React there
 
 
 ## setup 
+Composing up everything connectedto the project
 ```bash
 docker compose up -d
 ```
-connecting to the database
+
+connecting to the database (wip password secret) 
 ```bash
 psql -h localhost -U postgres -d vectordemo
 ```
-
+Example sql 
 ```sql
 SELECT table_name, column_name, data_type, is_nullable
 FROM information_schema.columns

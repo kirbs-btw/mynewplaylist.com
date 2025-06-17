@@ -1,68 +1,164 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.nav-section {
+    width: 100vw;
+    height: 10vh;
+    background-color: var(--dark-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.search-bar {
+    width: 80%;
+    height: 70%;
+    background-color: var(--mid-base);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#search-input {
+    width: 82.5%;
+    margin-left: 0.75%;
+    height: 75%;
+    background-color: var(--dark-base);
+    color: var(--white-color);
+    border: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+#search-input:focus {
+    border: none;
+    outline: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#search-button {
+    width: 15%;
+    height: 70%;
+    border: none;
+    font-family: Gotham Htf;
+    background-color: var(--secondary-color);
+}
+
+#search-button:hover {
+    background-color: var(--hover-secondary-color);
+}
+
+#search-button:focus {
+    border: none;
+    outline: none;
+}
+
+.playlist-section {
+    width: 100vw;
+    height: 45vh;
+    background-color: var(--dark-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#playlist_title {
+    color: var(--white-color);
+    font-family: Gotham htf;
+}
+
+.playlist-container {
+    width: 80%;
+    height: 90%;
+    background-color: var(--mid-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.song-container {
+    width: 98.5%;
+    height: 5vh;
+    margin-top: 1vh;
+    background-color: var(--dark-base);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.song-container>div>* {
+    margin-left: 2vh;
+    margin-right: 2vh;
+    font-family: Gotham Htf;
+    display: flex;
+}
+
+.song-container>div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.start-song-div {
+    height: 100%;
+    width: 70%;
+}
+
+.middle-song-div {
+    height: 100%;
+    width: 25%;
+}
+
+.end-song-div {
+    height: 100%;
+    width: 5%;
+}
+
+.start-song-section {
+    color: var(--white-color);
+}
+
+.middle-song-section {
+    color: var(--white-color);
+}
+
+.end-song-section {
+    font-size: 200%;
+    color: var(--secondary-color);
+}
+
+.suggestions-section {
+    width: 100vw;
+    height: 45vh;
+    background-color: var(--dark-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.suggestion-container {
+    width: 80%;
+    height: 70%;
+    background-color: var(--mid-base);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.add-song-button {
+    background-color: #ffffff00;
+    border: none;
+}
+
+.add-song-button:hover {
+    color: var(--hover-secondary-color);
+}
+
+.suggestion-container,
+.playlist-container,
+.search-bar,
+.song-container,
+#search-input,
+#search-button {
+    border-radius: 10px;
 }

@@ -22,3 +22,9 @@ connecting to the database (wip password secret)
 ```bash
 psql -h localhost -U postgres -d vectordemo
 ```
+
+
+## numbers 
+rows: 2.7m 
+index build time: 25min - hnsw
+recall: ? 

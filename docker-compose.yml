@@ -26,6 +26,16 @@ services:
       DATABASE_URL: postgresql://postgres:secret@db:5432/vectordemo
     volumes:
       - ./backend:/app
+  frontend:
+    build: ./frontend
+    container_name: vector-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
 
 volumes:
   pgdata:

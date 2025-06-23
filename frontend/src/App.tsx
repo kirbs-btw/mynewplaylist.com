@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 // Define types for our data
@@ -11,8 +11,8 @@ interface Song {
   distance?: number;
 }
 
-// Backend URL - update this if your backend runs on a different port
-const API_URL = 'http://localhost:8000';
+// Backend URL - automatically uses proxy in production or direct URL in development
+const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:8000';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -86,7 +86,7 @@ function App() {
     }
   };
 
-  const renderSongItem = (song: Song, isInPlaylist: boolean = false, isSuggestion: boolean = false) => {
+  const renderSongItem = (song: Song, isInPlaylist: boolean = false) => {
     const spotifyUrl = song.track_external_urls.startsWith('http') 
       ? song.track_external_urls 
       : `https://open.spotify.com/track/${song.track_id}`;
@@ -221,7 +221,7 @@ function App() {
                 Add songs to your playlist and click "Suggest Songs" to get recommendations
               </p>
             ) : (
-              suggestions.map(song => renderSongItem(song, false, true))
+              suggestions.map(song => renderSongItem(song, false))
             )}
           </div>
         </div>

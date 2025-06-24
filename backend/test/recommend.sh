@@ -1,0 +1,1 @@
+curl "http://localhost:8000/recommend-average/?song_ids=1&limit=5"

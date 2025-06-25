@@ -36,7 +36,6 @@ function App() {
 
   const searchSongs = async (query: string) => {
     if (!query.trim()) return;
-    
     setIsSearching(true);
     try {
       const response = await fetch(`${API_URL}/search-advanced/?query=${encodeURIComponent(query)}&limit=10`);
@@ -87,9 +86,18 @@ function App() {
   };
 
   const renderSongItem = (song: Song, isInPlaylist: boolean = false) => {
-    const spotifyUrl = song.track_external_urls.startsWith('http') 
-      ? song.track_external_urls 
-      : `https://open.spotify.com/track/${song.track_id}`;
+    console.log("Song Item:");
+    console.log(song);
+    let spotifyUrl = '';
+    if (typeof song.track_external_urls === 'string') {
+      spotifyUrl = song.track_external_urls.startsWith('http') 
+        ? song.track_external_urls 
+        : `https://open.spotify.com/track/${song.track_id}`;
+    } else if (typeof song.track_external_urls === 'object' && song.track_external_urls) {
+      spotifyUrl = song.track_external_urls;
+    } else {
+      spotifyUrl = `https://open.spotify.com/track/${song.track_id}`;
+    }
 
     return (
       <div key={song.track_id} className="song-container">

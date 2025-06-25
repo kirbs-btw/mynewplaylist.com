@@ -1,0 +1,1 @@
+curl "http://localhost:8000/search-advanced/?query=shape&limit=10"

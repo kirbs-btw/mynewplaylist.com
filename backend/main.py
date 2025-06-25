@@ -84,7 +84,15 @@ def search_songs_advanced(query: str, limit: int = 20):
             LIMIT %s
         """, (query, query, limit))
         
-        results = cur.fetchall()
+        
+        # results = cur.fetchall()
+        rows = cur.fetchall()
+        columns = [desc[0] for desc in cur.description]
+
+        results = [
+            dict(zip(columns, row))
+            for row in rows
+        ]
         return results
 
 @app.get("/")

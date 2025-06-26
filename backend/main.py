@@ -60,7 +60,7 @@ def get_recommendations_by_average(
         return JSONResponse(content=result)
 
 @app.get("/search-advanced/")
-def search_songs_advanced(query: str, limit: int = 20):
+def search_songs_advanced(query: str, limit: int = 50):
     """
     Advanced search using PostgreSQL full-text search capabilities.
     Provides better ranking and relevance scoring.
@@ -80,10 +80,10 @@ def search_songs_advanced(query: str, limit: int = 20):
             FROM b25.songs
             WHERE 
                 to_tsvector('english', track_name || ' ' || artist_name) @@ plainto_tsquery('english', %s)
-            ORDER BY relevance_score DESC, track_name
-            LIMIT %s
-        """, (query, query, limit))
-        
+                OR track_name ILIKE %s
+            ORDER BY relevance_score DESC NULLS LAST, track_name
+            LIMIT %s;
+        """, (query, query, f"%{query}%", limit))
         
         # results = cur.fetchall()
         rows = cur.fetchall()

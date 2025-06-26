@@ -38,7 +38,7 @@ function App() {
     if (!query.trim()) return;
     setIsSearching(true);
     try {
-      const response = await fetch(`${API_URL}/search-advanced/?query=${encodeURIComponent(query)}&limit=10`);
+      const response = await fetch(`${API_URL}/search-advanced/?query=${encodeURIComponent(query)}&limit=50`);
       if (response.ok) {
         const data = await response.json();
         setSearchResults(data);

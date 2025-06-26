@@ -125,3 +125,6 @@ psql -h localhost -U postgres -d vectordemo
 rows: 2.7m 
 index build time: 25min - hnsw
 recall: ? 
+The keyword search will need to be brushed up
+
+docker-compose up --build -d frontend

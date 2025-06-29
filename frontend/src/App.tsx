@@ -162,14 +162,8 @@ function App() {
               />
             ))}
           </datalist>
-          <button 
-            id="search-button" 
-            onClick={() => searchQuery && searchSongs(searchQuery)}
-            disabled={isSearching}
-          >
-            {isSearching ? '...' : 'Search'}
-          </button>
-        </div>
+          
+          </div>
       </div>
 
       {/* Show search results dropdown */}

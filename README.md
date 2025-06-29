@@ -17,35 +17,6 @@ A music playlist application with AI-powered song recommendations using vector e
 
 ### Launch Everything
 
-**Windows:**
-```bash
-start.bat
-```
-
-**Linux/Mac:**
-```bash
-chmod +x start.sh
-./start.sh
-```
-
-This will:
-1. Build all containers (database, backend, frontend)
-2. Start all services
-3. Set up the PostgreSQL database with pgvector extension
-4. Make the application available at http://localhost:3000
-
-### Stop Everything
-
-**Windows:**
-```bash
-stop.bat
-```
-
-**Linux/Mac:**
-```bash
-docker-compose down
-```
-
 ## Architecture
 
 - **Frontend**: React + TypeScript + Vite
@@ -53,20 +24,6 @@ docker-compose down
 - **Database**: PostgreSQL 16 with pgvector extension for similarity search
 
 ## Development
-
-### Backend Only
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-### Frontend Only
-```bash
-cd frontend
-npm install
-npm run dev
-```
 
 ## Ports
 
@@ -88,12 +45,6 @@ docker-compose build --no-cache
 docker-compose up -d
 ```
 
-### Database issues
-The database is automatically initialized with the schema from `init.sql`. If you need to reset:
-```bash
-docker-compose down -v  # This removes the database volume
-docker-compose up -d
-```
 
 # mynewplaylist.com
 This repo is deploying a recommendation model. onto a frontend with fastapi, postgres + vectorpg and react 
@@ -121,10 +72,7 @@ psql -h localhost -U postgres -d vectordemo
 ```
 
 
-## numbers 
-rows: 2.7m 
-index build time: 25min - hnsw
-recall: ? 
-The keyword search will need to be brushed up
-
+## debuging
 docker-compose up --build -d frontend
+docker-compose up --build -d vector-backend
+docker-compose up --build -d vector-frontend

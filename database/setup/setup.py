@@ -9,7 +9,7 @@ def main():
     inserting the vectors with the data to the pg
     """
 
-    model =  Word2Vec.load("model/b25-CBOW-256-5-150v2.model")
+    model =  Word2Vec.load("model/b25-CBOW-256-5-150v3.model")
     print("MODEL LOADED")
 
     df = pd.read_csv("csv/songs.csv")

@@ -10,7 +10,7 @@ CREATE TABLE b25.songs(
     embedding VECTOR(256)
 );
 
-CREATE INDEX ON b25.songs
+CREATE INDEX  songs_embedding_idx ON b25.songs
 USING hnsw (embedding vector_l2_ops)
 WITH (m = 16, ef_construction = 200);
 CREATE INDEX IF NOT EXISTS songs_track_name_trgm_idx ON b25.songs USING gin (track_name gin_trgm_ops);

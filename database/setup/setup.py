@@ -26,7 +26,7 @@ def main():
 
     print("EMBEDDINGS ADDED")
 
-    filtered_df.to_csv("combined_csv/songs_with_embeddings.csv", index=False, encoding="utf-8", errors="ignore")
+    filtered_df.to_csv("combined_csv/songs_with_embeddings_v2.csv", index=False, encoding="utf-8", errors="ignore")
 
 if __name__ == '__main__':
     main()

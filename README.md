@@ -76,3 +76,9 @@ psql -h localhost -U postgres -d vectordemo
 docker-compose up --build -d frontend
 docker-compose up --build -d vector-backend
 docker-compose up --build -d vector-frontend
+
+## wip 
+database reindexing tbd to fix the duplicate issue
+
+changing the buttons 
+integrate spotify listen link 

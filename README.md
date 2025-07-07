@@ -74,8 +74,8 @@ psql -h localhost -U postgres -d vectordemo
 
 ## debuging
 docker-compose up --build -d frontend
-docker-compose up --build -d vector-backend
-docker-compose up --build -d vector-frontend
+docker-compose up --build -d backend
+docker-compose up --build -d db
 
 ## wip 
 database reindexing tbd to fix the duplicate issue

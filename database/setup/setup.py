@@ -9,7 +9,7 @@ def main():
     inserting the vectors with the data to the pg
     """
 
-    model =  Word2Vec.load("model/b25-CBOW-256-5-150v3.model")
+    model =  Word2Vec.load("C:/Users/lipka/HARD_DRIVE/Projekte/Projekte/Project 146/b25-model/models_str/b25-CBOW-256-5-150v4.model")
     print("MODEL LOADED")
 
     df = pd.read_csv("csv/songs.csv")
@@ -26,7 +26,7 @@ def main():
 
     print("EMBEDDINGS ADDED")
 
-    filtered_df.to_csv("combined_csv/songs_with_embeddings_v2.csv", index=False, encoding="utf-8", errors="ignore")
+    filtered_df.to_csv("combined_csv/songs_with_embeddings_v3.csv", index=False, encoding="utf-8", errors="ignore")
 
 if __name__ == '__main__':
     main()

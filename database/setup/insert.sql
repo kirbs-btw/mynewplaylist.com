@@ -1,2 +1,2 @@
 SET client_encoding = 'UTF8';
-\COPY b25.songs(track_id,track_name,track_external_urls,artist_name,embedding) FROM 'C:\Users\lipka\HARD_DRIVE\Projekte\Projekte\Project 146\mynewplaylist.com\database\setup\combined_csv\songs_with_embeddings_v2.csv' DELIMITER ',' CSV HEADER;
+\COPY b25.songs(track_id,track_name,track_external_urls,artist_name,embedding) FROM 'C:\Users\lipka\HARD_DRIVE\Projekte\Projekte\Project 146\mynewplaylist.com\database\setup\combined_csv\songs_with_embeddings_v3.csv' DELIMITER ',' CSV HEADER;

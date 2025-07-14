@@ -33,11 +33,11 @@ fi
 
 # Stop existing containers
 echo "🛑 Stopping existing containers..."
-docker-compose -f docker-compose.prod.yml down --remove-orphans
+docker compose -f docker-compose.prod.yml down --remove-orphans
 
 # Build and start production containers
 echo "🔨 Building and starting production containers..."
-docker-compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.prod.yml up -d --build
 
 # Wait for services to be healthy
 echo "⏳ Waiting for services to be healthy..."
@@ -45,11 +45,11 @@ sleep 30
 
 # Check service health
 echo "🏥 Checking service health..."
-docker-compose -f docker-compose.prod.yml ps
+docker compose -f docker-compose.prod.yml ps
 
 # Show logs if there are issues
 echo "📋 Recent logs:"
-docker-compose -f docker-compose.prod.yml logs --tail=20
+docker compose -f docker-compose.prod.yml logs --tail=20
 
 echo "✅ Deployment completed!"
 echo "🌐 Your application should be available at:"

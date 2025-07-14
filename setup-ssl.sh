@@ -33,7 +33,7 @@ mkdir -p ssl
 
 # Stop nginx temporarily to free port 80
 echo "🛑 Temporarily stopping nginx..."
-docker-compose -f docker-compose.prod.yml stop nginx
+docker compose -f docker-compose.prod.yml stop nginx
 
 # Generate certificates
 echo "🔐 Generating SSL certificates for $DOMAIN..."
@@ -55,7 +55,7 @@ chmod 600 ssl/cert.pem ssl/key.pem
 
 # Start nginx with SSL
 echo "🚀 Starting nginx with SSL..."
-docker-compose -f docker-compose.prod.yml up -d nginx
+docker compose -f docker-compose.prod.yml up -d nginx
 
 echo "✅ SSL setup completed!"
 echo "🔒 Your site is now available at: https://$DOMAIN"

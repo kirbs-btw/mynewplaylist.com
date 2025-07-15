@@ -77,6 +77,12 @@ docker-compose up --build -d frontend
 docker-compose up --build -d backend
 docker-compose up --build -d db
 
+
+## prod setup
+```sh
+./deploy.sh
+```
+
 ## wip 
 database reindexing tbd to fix the duplicate issue
 

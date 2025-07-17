@@ -35,14 +35,13 @@ mkdir -p ssl
 echo "🛑 Temporarily stopping nginx..."
 docker compose -f docker-compose.prod.yml stop nginx
 
-# Generate certificates
+# Generate certificates (only for main domain, not www)
 echo "🔐 Generating SSL certificates for $DOMAIN..."
 sudo certbot certonly --standalone \
     --email admin@$DOMAIN \
     --agree-tos \
     --no-eff-email \
-    -d $DOMAIN \
-    -d www.$DOMAIN
+    -d $DOMAIN
 
 # Copy certificates to ssl directory
 echo "📋 Copying certificates..."

@@ -7,6 +7,7 @@ CREATE TABLE b25.songs(
     track_name TEXT,
     artist_name TEXT,
     track_external_urls TEXT,
+    relevance INT,
     embedding VECTOR(256)
 );
 

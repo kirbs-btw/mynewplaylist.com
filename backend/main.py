@@ -67,21 +67,34 @@ def search_songs_advanced(query: str, limit: int = 50):
     """
     with conn.cursor() as cur:
         # Use full-text search with tsvector for better matching
+        # cur.execute("""
+        #     SELECT 
+        #         track_id, 
+        #         track_name, 
+        #         artist_name, 
+        #         track_external_urls,
+        #         ts_rank(
+        #             to_tsvector('english', track_name || ' ' || artist_name), 
+        #             plainto_tsquery('english', %s)
+        #         ) AS relevance_score
+        #     FROM b25.songs
+        #     WHERE 
+        #         to_tsvector('english', track_name || ' ' || artist_name) @@ plainto_tsquery('english', %s)
+        #         OR track_name ILIKE %s
+        #     ORDER BY relevance_score DESC NULLS LAST, track_name
+        #     LIMIT %s;
+        # """, (query, query, f"%{query}%", limit))
         cur.execute("""
             SELECT 
                 track_id, 
                 track_name, 
                 artist_name, 
-                track_external_urls,
-                ts_rank(
-                    to_tsvector('english', track_name || ' ' || artist_name), 
-                    plainto_tsquery('english', %s)
-                ) AS relevance_score
+                track_external_urls
             FROM b25.songs
             WHERE 
                 to_tsvector('english', track_name || ' ' || artist_name) @@ plainto_tsquery('english', %s)
                 OR track_name ILIKE %s
-            ORDER BY relevance_score DESC NULLS LAST, track_name
+            ORDER BY relevance DESC NULLS LAST, track_name
             LIMIT %s;
         """, (query, query, f"%{query}%", limit))
         

@@ -233,3 +233,15 @@ function App() {
 }
 
 export default App
+
+// NOTES:
+// the search is feeling really of
+// u have the suggestions and also the things to add in the song
+// the website needs to point somehow to the shadetech base website
+// there should be the possebility to transfer your whole playlist to spotify
+// the names clutter up a lot when searching 
+// - maybe for songs you don't find direktly pop up a second ui where the user can find the results better 
+// - giving the user less suggestiosn to beginn with when doing the selection
+// after about max 10 songs you are stuck in a certain part of the vectorstore and it is harder to find curveball songs for the playlist 
+// so there is the need to change the strategies for suggestions along the time the suggestion button is hit or some shit
+// or just take out every song that got suggested for following suggestions...

@@ -17,7 +17,11 @@ const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:8000';
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Song[]>([]);
-  const [playlist, setPlaylist] = useState<Song[]>([]);
+  const [playlist, setPlaylist] = useState<Song[]>([]); 
+  // this could be the base for a user to export the whole playlist into the own spotify account stuff...
+  // creating a link to a website where they can export
+  // or using the api to create the playlist on a getmyplaylist.com account sth idk
+  // ---> hard to let the user export it directly over
   const [suggestions, setSuggestions] = useState<Song[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 

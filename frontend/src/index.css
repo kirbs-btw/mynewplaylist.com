@@ -166,8 +166,22 @@
 .footer {
     width: 100%;
     min-height: 30%;
-    background-color: red;
+    background-color: var(--mid-base);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.footer>p {
+    font-family: Gotham Htf;
+    color: var(--dark-base);
+}
+
+.link {
+    color: var(--dark-base);
+    text-decoration: none;
+}
+
+.link:hover {
+    color: var(--white-color);
 }

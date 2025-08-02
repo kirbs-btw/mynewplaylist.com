@@ -153,6 +153,7 @@ function App() {
             type="text" 
             id="search-input"
             value={searchQuery}
+            name="search-song"  
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search for songs..."
             autoComplete="off"

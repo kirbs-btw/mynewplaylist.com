@@ -1,187 +1,27 @@
-.nav-section {
-    width: 100vw;
-    height: 10vh;
-    background-color: var(--dark-base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    body {
+        @apply bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans;
+        min-height: 100vh;
+    }
 }
 
-.search-bar {
-    width: 80%;
-    height: 70%;
-    background-color: var(--mid-base);
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-#search-input {
-    width: 95%;
-    margin-left: 0.75%;
-    height: 75%;
-    background-color: var(--dark-base);
-    color: var(--white-color);
-    border: none;
-}
-
-#search-input:focus {
-    border: none;
-    outline: none;
-}
-
-#search-button {
-    width: 15%;
-    height: 70%;
-    border: none;
-    font-family: Gotham Htf;
-    background-color: var(--secondary-color);
-}
-
-#search-button:hover {
-    background-color: var(--hover-secondary-color);
-}
-
-#search-button:focus {
-    border: none;
-    outline: none;
-}
-
-.playlist-section {
-    width: 100vw;
-    height: 45vh;
-    background-color: var(--dark-base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-#playlist_title {
-    color: var(--white-color);
-    font-family: Gotham htf;
-}
-
-.playlist-container {
-    width: 80%;
-    height: 90%;
-    background-color: var(--mid-base);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow-y: auto;
-}
-
-.song-container {
-    width: 98.5%;
-    height: 5vh;
-    margin-top: 1vh;
-    background-color: var(--dark-base);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.song-container>div>* {
-    margin-left: 2vh;
-    margin-right: 2vh;
-    font-family: Gotham Htf;
-    display: flex;
-}
-
-.song-container>div {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.start-song-div {
-    height: 100%;
-    width: 70%;
-}
-
-.middle-song-div {
-    height: 100%;
-    width: 25%;
-}
-
-.end-song-div {
-    height: 100%;
-    width: 5%;
-}
-
-.start-song-section {
-    color: var(--white-color);
-}
-
-.middle-song-section {
-    color: var(--white-color);
-}
-
-.end-song-section {
-    font-size: 200%;
-    color: var(--secondary-color);
-}
-
-.suggestions-section {
-    width: 100vw;
-    height: 45vh;
-    background-color: var(--dark-base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.suggestion-container {
-    width: 80%;
-    height: 70%;
-    background-color: var(--mid-base);
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    overflow-y: auto;
-}
-
-.add-song-button {
-    background-color: #ffffff00;
-    border: none;
-}
-
-.add-song-button:hover {
-    color: var(--hover-secondary-color);
-}
-
-.suggestion-container,
-.playlist-container,
-.search-bar,
-.song-container,
-#search-input,
-#search-button {
-    border-radius: 10px;
-}
-
-.footer {
-    width: 100%;
-    min-height: 30%;
-    background-color: var(--mid-base);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.footer>p {
-    font-family: Gotham Htf;
-    color: var(--dark-base);
-}
-
-.link {
-    color: var(--dark-base);
-    text-decoration: none;
-}
-
-.link:hover {
-    color: var(--white-color);
+@layer components {
+    .glass-effect {
+        @apply bg-white/10 backdrop-blur-md border border-white/20;
+    }
+    .card-hover {
+        @apply transition-all duration-300 hover: scale-105 hover: shadow-2xl;
+    }
+    .button-primary {
+        @apply bg-gradient-to-r from-primary-500 to-primary-600 hover: from-primary-600 hover: to-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 transform hover: scale-105 focus: outline-none focus: ring-2 focus: ring-primary-500 focus: ring-offset-2 focus: ring-offset-gray-900;
+    }
+    .button-secondary {
+        @apply bg-white/10 hover: bg-white/20 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 border border-white/20 hover: border-white/30 focus: outline-none focus: ring-2 focus: ring-white/20 focus: ring-offset-2 focus: ring-offset-gray-900;
+    }
+    .spotify-button {
+        @apply bg-spotify-green hover: bg-green-500 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 transform hover: scale-105 focus: outline-none focus: ring-2 focus: ring-spotify-green focus: ring-offset-2 focus: ring-offset-gray-900;
+    }
 }

@@ -1,15 +1,17 @@
 # MyNewPlaylist.com
 
-A music playlist application with AI-powered song recommendations using vector embeddings.
+A modern music playlist application with AI-powered song recommendations using vector embeddings.
 
 ## Features
 
-- 🎵 Search for songs using advanced full-text search
-- 📋 Create and manage your playlist
-- 🤖 Get AI-powered song recommendations based on your playlist
-- 🎸 Direct Spotify integration for listening
+- 🎵 **Smart Search**: Advanced full-text search for songs and artists
+- 📝 **Playlist Builder**: Create and manage your custom playlists
+- 🤖 **AI Recommendations**: Get intelligent song suggestions based on your playlist
+- 🎸 **Spotify Integration**: Direct links to listen on Spotify
+- 🎨 **Modern UI**: Beautiful glass-morphism design with smooth animations
+- 📱 **Responsive**: Works perfectly on desktop and mobile devices
 
-## Quick Start (Docker)
+## Quick Start
 
 ### Prerequisites
 - Docker and Docker Compose installed
@@ -17,19 +19,69 @@ A music playlist application with AI-powered song recommendations using vector e
 
 ### Launch Everything
 
+```bash
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+### Access the Application
+
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **Database**: localhost:5432
+
 ## Architecture
 
-- **Frontend**: React + TypeScript + Vite
+- **Frontend**: React 18 + TypeScript + Tailwind CSS
 - **Backend**: FastAPI + PostgreSQL with pgvector
 - **Database**: PostgreSQL 16 with pgvector extension for similarity search
+- **Containerization**: Docker with multi-stage builds for production
 
 ## Development
 
-## Ports
+### Frontend Development
 
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
-- PostgreSQL: localhost:5432
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+
+### Backend Development
+
+```bash
+# Navigate to backend directory
+cd backend
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start development server
+uvicorn main:app --reload
+```
+
+### Database Access
+
+```bash
+# Connect to the database
+psql -h localhost -U postgres -d vectordemo
+# Password: secret
+```
+
+## Production Deployment
+
+```bash
+# Deploy to production
+./deploy.sh
+```
 
 ## Troubleshooting
 
@@ -45,44 +97,42 @@ docker-compose build --no-cache
 docker-compose up -d
 ```
 
-
-# mynewplaylist.com
-This repo is deploying a recommendation model. onto a frontend with fastapi, postgres + vectorpg and react 
-
-
-The architecture will look like that: 
-taking the CBOW model vectors and transfering them into a vector database
---> faster access and additional information on spot
-
-Having a PostgreSQL + pgvector as a database
-
-Then having a frontend build up with 
-React there
-
-
-## setup 
-Composing up everything connectedto the project
+### Individual service rebuilds
 ```bash
-docker compose up -d
-```
-
-connecting to the database (wip password secret) 
-```bash
-psql -h localhost -U postgres -d vectordemo
-```
-
-
-## debuging
 docker-compose up --build -d frontend
 docker-compose up --build -d backend
 docker-compose up --build -d db
-
-
-## prod setup
-```sh
-./deploy.sh
 ```
 
-## wip 
-fix quality 
-changing the buttons 
+## Project Structure
+
+```
+mynewplaylist.com/
+├── frontend/           # React application
+│   ├── src/
+│   │   ├── components/ # React components
+│   │   ├── services/   # API services
+│   │   └── types/      # TypeScript definitions
+│   ├── public/         # Static assets
+│   └── Dockerfile      # Frontend container
+├── backend/            # FastAPI application
+│   ├── main.py         # API endpoints
+│   └── requirements.txt
+├── database/           # Database setup and utilities
+├── docker-compose.yml  # Development environment
+└── docker-compose.prod.yml # Production environment
+```
+
+## API Endpoints
+
+- `GET /search-advanced/` - Search for songs
+- `GET /recommend-average/` - Get AI recommendations
+- `GET /` - Health check
+
+## Technologies Used
+
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Backend**: FastAPI, Python
+- **Database**: PostgreSQL, pgvector
+- **AI/ML**: Vector embeddings for similarity search
+- **Deployment**: Docker, Nginx 

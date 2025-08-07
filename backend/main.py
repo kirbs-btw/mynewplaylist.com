@@ -94,9 +94,9 @@ def search_songs_advanced(query: str, limit: int = 50):
             WHERE 
                 to_tsvector('english', track_name || ' ' || artist_name) @@ plainto_tsquery('english', %s)
                 OR track_name ILIKE %s
-            ORDER BY relevance DESC NULLS LAST, track_name
+            ORDER BY track_name
             LIMIT %s;
-        """, (query, query, f"%{query}%", limit))
+        """, (query, f"%{query}%", limit))
         
         # results = cur.fetchall()
         rows = cur.fetchall()

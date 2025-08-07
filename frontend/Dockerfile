@@ -14,5 +14,5 @@ COPY . .
 # Expose port
 EXPOSE 3000
 
-# Start development server
-CMD ["npm", "start"] 
+# Start development server with host binding for Docker
+CMD ["npm", "start", "--", "--host", "0.0.0.0"] 

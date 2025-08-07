@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { SearchResult } from '../types';
 import { searchSongs } from '../services/api';
 import SongCard from './SongCard';
@@ -13,20 +13,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onAddToPlaylist }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
 
-  useEffect(() => {
-    const searchTimeout = setTimeout(() => {
-      if (query.trim().length >= 2) {
-        performSearch();
-      } else {
-        setResults([]);
-        setShowResults(false);
-      }
-    }, 300);
-
-    return () => clearTimeout(searchTimeout);
-  }, [query]);
-
-  const performSearch = async () => {
+  const performSearch = useCallback(async () => {
     setIsLoading(true);
     try {
       const searchResults = await searchSongs(query, 10);
@@ -38,7 +25,22 @@ const SearchBar: React.FC<SearchBarProps> = ({ onAddToPlaylist }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [query]);
+
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      if (query.trim().length >= 2) {
+        performSearch();
+      } else {
+        setResults([]);
+        setShowResults(false);
+      }
+    }, 300);
+
+    return () => clearTimeout(searchTimeout);
+  }, [query, performSearch]);
+
+
 
   const handleAddToPlaylist = (song: SearchResult) => {
     onAddToPlaylist(song);

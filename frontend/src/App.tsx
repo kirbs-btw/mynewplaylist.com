@@ -99,7 +99,7 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="text-center py-8 px-4 border-t border-white/10">
         <p className="text-gray-400">
-          © 2024 MyNewPlaylist. Built with AI-powered music recommendations.
+          A <a href="https://www.shade-technology.de" className="text-white hover:text-gray-300">Shade Technology</a> product. Built with AI-powered music recommendations.
         </p>
       </footer>
     </div>

@@ -41,3 +41,4 @@ frontend/*.sw?
 *__pycache__
 PRODUCTION.md
 NOTES.md
+frontend/build

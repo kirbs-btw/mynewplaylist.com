@@ -8,18 +8,20 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
-# Configure CORS
+# Configure CORS (production is same-origin via nginx; this is a safe fallback)
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "*")
+allowed_origins = (
+    ["*"] if allowed_origins_env.strip() == "*" else [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
+)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000", "*"],  # Vite default port and fallback
-    allow_credentials=True,
+    allow_origins=allowed_origins,
+    allow_credentials=False if "*" in allowed_origins else True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 DATABASE_URL = os.environ["DATABASE_URL"]
-
-conn = psycopg.connect(DATABASE_URL)
 
 @app.get("/recommend-average/")
 def get_recommendations_by_average(
@@ -30,10 +32,11 @@ def get_recommendations_by_average(
     Get song recommendations based on the average embedding of multiple songs.
     This is useful for playlist-based recommendations.
     """
-    with conn.cursor() as cur:
-        # Execute query with song_ids properly cast to text[]
-        
-        cur.execute("""
+    # Create a short-lived connection per request for process-safety
+    with psycopg.connect(DATABASE_URL) as conn:
+        with conn.cursor() as cur:
+            # Execute query with song_ids properly cast to text[]
+            cur.execute("""
             SELECT track_id, track_name, artist_name, track_external_urls,
                    embedding <-> (
                        SELECT AVG(embedding) 
@@ -45,19 +48,19 @@ def get_recommendations_by_average(
             ORDER BY distance
             LIMIT %s
         """, (song_ids, song_ids, limit))
-        
-        rows = cur.fetchall()
-        result = [
-            {
-                "track_id": r[0],
-                "track_name": r[1],
-                "artist_name": r[2],
-                "track_external_urls": r[3],
-                "distance": r[4]
-            }
-            for r in rows
-        ]
-        return JSONResponse(content=result)
+
+            rows = cur.fetchall()
+            result = [
+                {
+                    "track_id": r[0],
+                    "track_name": r[1],
+                    "artist_name": r[2],
+                    "track_external_urls": r[3],
+                    "distance": r[4]
+                }
+                for r in rows
+            ]
+            return JSONResponse(content=result)
 
 @app.get("/search-advanced/")
 def search_songs_advanced(query: str, limit: int = 50):
@@ -65,7 +68,8 @@ def search_songs_advanced(query: str, limit: int = 50):
     Advanced search using PostgreSQL full-text search capabilities.
     Provides better ranking and relevance scoring.
     """
-    with conn.cursor() as cur:
+    with psycopg.connect(DATABASE_URL) as conn:
+        with conn.cursor() as cur:
         # Use full-text search with tsvector for better matching
         # cur.execute("""
         #     SELECT 

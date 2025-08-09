@@ -6,8 +6,12 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Build-time API base URL for CRA
+ARG REACT_APP_API_URL=/api
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
+
+# Install dependencies (include devDependencies for build tools like Tailwind/PostCSS)
+RUN npm ci
 
 # Copy source code
 COPY . .

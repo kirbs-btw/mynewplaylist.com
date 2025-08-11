@@ -136,3 +136,8 @@ mynewplaylist.com/
 - **Database**: PostgreSQL, pgvector
 - **AI/ML**: Vector embeddings for similarity search
 - **Deployment**: Docker, Nginx 
+
+# To dos for the website
+- fix SEO
+- make phone version better 
+- have own corporate identity instead of that AI slop

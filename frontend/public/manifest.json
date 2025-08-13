@@ -1,13 +1,53 @@
 {
     "short_name": "MyNewPlaylist",
-    "name": "MyNewPlaylist - AI-Powered Playlist Creation",
+    "name": "MyNewPlaylist - AI-Powered Music Playlist Creation",
+    "description": "Create amazing music playlists with AI-powered recommendations. Discover new songs and build personalized playlists.",
     "icons": [{
-        "src": "favicon.ico",
-        "sizes": "64x64 32x32 24x24 16x16",
-        "type": "image/x-icon"
-    }],
-    "start_url": ".",
+            "src": "favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
     "display": "standalone",
+    "orientation": "portrait-primary",
     "theme_color": "#000000",
-    "background_color": "#000000"
+    "background_color": "#000000",
+    "categories": ["music", "entertainment", "lifestyle"],
+    "lang": "en",
+    "dir": "ltr",
+    "scope": "/",
+    "display_override": ["standalone", "minimal-ui"],
+    "prefer_related_applications": false,
+    "related_applications": [],
+    "screenshots": [{
+            "src": "screenshot-wide.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "screenshot-narrow.png",
+            "sizes": "750x1334",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ]
 }

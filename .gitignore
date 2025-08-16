@@ -42,3 +42,8 @@ frontend/*.sw?
 PRODUCTION.md
 NOTES.md
 frontend/build
+backend.zip
+database.zip
+frontend.zip
+vendor.zip
+general.zip

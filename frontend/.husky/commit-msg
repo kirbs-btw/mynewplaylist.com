@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Check if commit message follows conventional commit format
+# Format: type(scope): description
+# Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert
+
+commit_regex='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .{1,50}'
+
+if ! grep -qE "$commit_regex" "$1"; then
+    echo "❌ Invalid commit message format!"
+    echo "Please use conventional commit format:"
+    echo "  type(scope): description"
+    echo ""
+    echo "Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert"
+    echo "Example: feat(playlist): add drag and drop reordering"
+    echo ""
+    echo "Your message: $(cat "$1")"
+    exit 1
+fi
+
+echo "✅ Commit message format is valid!"

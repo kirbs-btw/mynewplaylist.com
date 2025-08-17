@@ -56,7 +56,9 @@ class AnalyticsService {
       if (response.ok) {
         const data = await response.json();
         this.sessionId = data.session_id;
-        localStorage.setItem('analytics_session_id', this.sessionId);
+        if (this.sessionId) {
+          localStorage.setItem('analytics_session_id', this.sessionId);
+        }
       }
     } catch (error) {
       console.warn('Failed to start analytics session:', error);

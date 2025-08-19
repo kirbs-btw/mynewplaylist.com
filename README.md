@@ -138,6 +138,8 @@ mynewplaylist.com/
 - **Deployment**: Docker, Nginx 
 
 # To dos for the website
-- fix SEO
 - make phone version better 
 - have own corporate identity instead of that AI slop
+- make the ssl cert
+- login pages to limit useres
+- analytics buc fixes 

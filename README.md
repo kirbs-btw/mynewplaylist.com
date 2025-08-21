@@ -142,4 +142,6 @@ mynewplaylist.com/
 - have own corporate identity instead of that AI slop
 - make the ssl cert
 - login pages to limit useres
+- getting up the different logins with google, facebook and ...
+- setting up connections to different streaming services..
 - analytics buc fixes 

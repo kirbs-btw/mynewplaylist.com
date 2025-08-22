@@ -81,6 +81,9 @@ psql -h localhost -U postgres -d vectordemo
 ```bash
 # Deploy to production
 ./deploy.sh
+
+chmod +x setup-ssl.sh
+./setup-ssl.sh mynewplaylist.com
 ```
 
 ## Troubleshooting

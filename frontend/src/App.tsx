@@ -61,7 +61,7 @@ const App: React.FC = () => {
       <header className="text-center py-8 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            MyNewPlaylist
+            MyNewPlaylist.com
           </h1>
           <p className="text-xl text-gray-300 mb-8">
             Create amazing playlists with AI-powered recommendations

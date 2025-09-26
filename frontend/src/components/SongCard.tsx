@@ -28,11 +28,6 @@ const SongCard: React.FC<SongCardProps> = ({
           <p className="text-gray-300 text-sm truncate">
             {song.artist_name}
           </p>
-          {song.distance && (
-            <p className="text-primary-400 text-xs mt-1">
-              Similarity: {((1 - song.distance) * 100).toFixed(1)}%
-            </p>
-          )}
         </div>
         
         <div className="flex items-center space-x-2 ml-4">

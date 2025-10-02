@@ -3,3 +3,4 @@ uvicorn[standard]
 psycopg[binary]
 sqlalchemy
 pgvector
+PyJWT>=2.9.0

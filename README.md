@@ -103,6 +103,21 @@ A modern music playlist application with AI-powered song recommendations using v
 
 ## Quick Start
 
+### Authentication Setup (Supabase + Google)
+1. Create a Supabase project and enable the Google provider under **Authentication -> Providers**. Note the project URL, anon key, and JWT secret.
+2. Populate the new environment variables in `.env`, `env.production.template`, and your deployment secrets:
+   - `REACT_APP_SUPABASE_URL`
+   - `REACT_APP_SUPABASE_ANON_KEY`
+   - `SUPABASE_JWT_SECRET`
+   - `SUPABASE_JWT_AUDIENCE` (defaults to `authenticated`)
+   - `REACT_APP_ANON_RECOMMENDATION_LIMIT` / `REACT_APP_AUTH_RECOMMENDATION_LIMIT`
+   - `ANON_RECOMMENDATION_LIMIT` / `AUTH_RECOMMENDATION_LIMIT`
+3. In Supabase Auth settings, add your local and production redirect URLs (e.g. `http://localhost:3000`, `http://localhost:3000/auth/v1/callback`, `https://mynewplaylist.com`).
+4. Install the new dependencies and restart the stack:
+   - Frontend: `npm install` (pulls `@supabase/supabase-js`).
+   - Backend: `pip install -r backend/requirements.txt` (adds `PyJWT`).
+5. Deploy: surface the same variables in production (Docker secrets, hosting provider, etc.) and verify Google sign-in end-to-end before raising limits.
+
 ### Prerequisites
 - Docker and Docker Compose installed
 - Docker Desktop running (for Windows/Mac)
@@ -315,3 +330,4 @@ mynewplaylist.com/
 - 🔄 **Corporate Identity**: Develop unique brand identity
 - 🔄 **Analytics Bug Fixes**: Resolve tracking issues
 - 🔄 **Social Features**: Implement friend system and sharing
+

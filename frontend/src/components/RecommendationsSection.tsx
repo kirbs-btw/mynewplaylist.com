@@ -6,12 +6,14 @@ interface RecommendationsSectionProps {
   recommendations: Song[];
   onAddToPlaylist: (song: Song) => void;
   isLoading: boolean;
+  errorMessage?: string | null;
 }
 
 const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({
   recommendations,
   onAddToPlaylist,
-  isLoading
+  isLoading,
+  errorMessage
 }) => {
   return (
     <div className="glass-effect rounded-xl p-6">
@@ -22,6 +24,12 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({
           <span className="text-primary-400 text-sm font-medium">Powered by AI</span>
         </div>
       </div>
+
+      {errorMessage && (
+        <div className="mb-4 bg-red-500/10 border border-red-500/30 text-red-200 px-4 py-3 rounded-lg">
+          {errorMessage}
+        </div>
+      )}
 
       {isLoading ? (
         <div className="text-center py-12">
@@ -56,4 +64,4 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({
   );
 };
 
-export default RecommendationsSection; 
+export default RecommendationsSection;

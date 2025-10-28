@@ -23,3 +23,10 @@ CREATE INDEX IF NOT EXISTS songs_artist_name_trgm_idx ON b25.songs USING gin (ar
 CREATE INDEX IF NOT EXISTS songs_textsearch_idx ON b25.songs USING gin (
   to_tsvector('english', track_name || ' ' || artist_name)
 );
+
+-- Waitlist signups for product launch
+CREATE TABLE IF NOT EXISTS b25.waitlist_signups (
+    id SERIAL PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
